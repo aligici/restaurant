@@ -1,24 +1,34 @@
-import logo from './logo.svg';
+// src/App.js
+import React from 'react';
 import './App.css';
+import LandingPage from './components/LandingPage';
+import Menu from './components/Menu';
+import { OrderProvider } from './context/OrderContext';
+import { ReservationProvider } from './context/ReservationContext';
+import ReservationForm from './components/ReservationForm';
+import ReservationList from './components/ReservationList';
+import { ReviewsProvider } from './context/ReviewsContext';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    <OrderProvider>
+      <ReservationProvider>
+        <ReviewsProvider>
+          <div className="App">
+            <LandingPage />
+            <section id="menu">
+              <Menu />
+            </section>
+            
+            <section id="reservation">
+              <ReservationForm />
+              <ReservationList />
+            </section>
+          </div>
+        </ReviewsProvider>
+      </ReservationProvider>
+    </OrderProvider>
   );
 }
 
